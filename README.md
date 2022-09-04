@@ -13,7 +13,7 @@ This variable is optional. Set to a non-empty value, like `true`, to enable http
 `CERT_FILE`, `KEY_FILE`  
 These variables are mandatory if `USE_HTTPS` is set. Specify SSL cert and key file path.
 
-`USE_ELASTIC_SEARCH_EXPORT`
+`USE_ELASTIC_SEARCH_EXPORT`  
 This variable is optional. Set to a non-empty value, like `true`, to enable exporting information to elasticsearch.
 
 `ELASTIC_SEARCH_URL`  
