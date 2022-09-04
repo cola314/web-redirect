@@ -15,3 +15,6 @@ These variables are mandatory if `USE_HTTPS` is set. Specify SSL cert and key fi
 
 `USE_ELASTIC_SEARCH_EXPORT`
 This variable is optional. Set to a non-empty value, like `true`, to enable exporting information to elasticsearch.
+
+`ELASTIC_SEARCH_URL`  
+These variables are mandatory if `USE_ELASTIC_SEARCH_EXPORT` is set. Specify url of elasticsearch.
