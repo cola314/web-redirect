@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RequiredArgsConstructor
 @Slf4j
 @Controller
@@ -17,9 +19,13 @@ public class MainController {
 
     @GetMapping("{*path}")
     public ResponseEntity<Void> handleAllRequest(
-            @PathVariable("path") String path
+            @PathVariable("path") String path,
+            HttpServletRequest request
     ) {
-        log.info("Requested path is {}", path);
+        String ip = request.getHeader("X-FORWARDED-FOR");
+        if (ip == null)
+            ip = request.getRemoteAddr();
+        log.info("Requested path is {}, client ip is {}", path, ip);
 
         return ResponseEntity
                 .status(302)
