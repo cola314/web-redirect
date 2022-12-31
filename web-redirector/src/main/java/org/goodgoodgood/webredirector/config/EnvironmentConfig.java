@@ -10,4 +10,7 @@ public class EnvironmentConfig {
 
     @Value("${environment.REDIRECT_URL}")
     private String redirectUrl;
+
+    @Value("${environment.RESERVE_PATH}")
+    private Boolean isReservePath;
 }

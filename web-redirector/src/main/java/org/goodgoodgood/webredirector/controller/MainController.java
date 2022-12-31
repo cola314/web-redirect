@@ -22,14 +22,29 @@ public class MainController {
             @PathVariable("path") String path,
             HttpServletRequest request
     ) {
+        String ip = getIpFrom(request);
+        log.info("Requested path is {}, client ip is {}", path, ip);
+        String redirectUrl = getRedirectUrl(path);
+        
+        return ResponseEntity
+                .status(302)
+                .header("Location", redirectUrl)
+                .build();
+    }
+
+    private String getIpFrom(HttpServletRequest request) {
         String ip = request.getHeader("X-FORWARDED-FOR");
         if (ip == null)
             ip = request.getRemoteAddr();
-        log.info("Requested path is {}, client ip is {}", path, ip);
 
-        return ResponseEntity
-                .status(302)
-                .header("Location", environmentConfig.getRedirectUrl())
-                .build();
+        return ip;
+    }
+
+    private String getRedirectUrl(String path) {
+        if (environmentConfig.getIsReservePath()) {
+            return environmentConfig.getRedirectUrl() + path;
+        } else {
+            return environmentConfig.getRedirectUrl();
+        }
     }
 }
